@@ -7,6 +7,10 @@ import SignUp from '../screens/auth/SignUp';
 import ForgotPassword from '../screens/auth/ForgotPassword';
 import OtpVerification from '../screens/auth/OtpVerification';
 import CreateNewPassword from '../screens/auth/CreateNewPassword';
+import FillYourProfile from '../screens/auth/AccountSetup/FillYourProfile';
+import SetLocation from '../screens/auth/AccountSetup/SetLocation';
+import CreateNewPin from '../screens/auth/AccountSetup/CreateNewPin';
+import FaceScanning from '../screens/auth/AccountSetup/FaceScanning';
 
 const Stack = createStackNavigator();
 const Auth = () => {
@@ -21,6 +25,10 @@ const Auth = () => {
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="OtpVerification" component={OtpVerification} />
       <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
+      <Stack.Screen name="FillYourProfile" component={FillYourProfile} />
+      <Stack.Screen name="SetLocation" component={SetLocation} />
+      <Stack.Screen name="CreateNewPin" component={CreateNewPin} />
+      <Stack.Screen name="FaceScanning" component={FaceScanning} />
     </Stack.Navigator>
   );
 };

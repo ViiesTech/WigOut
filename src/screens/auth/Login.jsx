@@ -168,7 +168,7 @@ const Login = () => {
           <View style={{alignItems: 'center'}}>
             <AppButton
               title={'Sign in'}
-              handlePress={() => {}}
+              handlePress={() => navigateToRoute('FillYourProfile')}
               textSize={1.8}
               btnPadding={18}
               btnWidth={90}

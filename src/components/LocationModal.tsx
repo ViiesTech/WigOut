@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'; // Install this library if not already
 import AppTextInput from './AppTextInput';
 import AppButton from './AppButton';
@@ -13,6 +13,7 @@ import {
 } from '../utils/Responsive_Dimensions';
 import AppText from './AppTextComps/AppText';
 import LineBreak from './LineBreak';
+import { useCustomNavigation } from '../utils/Hooks';
 
 // type ModalProps = {
 //   visible?: any;
@@ -24,7 +25,7 @@ import LineBreak from './LineBreak';
 // };
 
 const LocationModal = () => {
-  const navigation = useNavigation();
+  const {navigateToRoute} = useCustomNavigation();
 
   return (
     <View style={styles.modal}>
@@ -45,7 +46,7 @@ const LocationModal = () => {
           <AppText
             title={'Location'}
             textSize={2.5}
-            textColor={AppColors.WHITE}
+            textColor={AppColors.BLACK}
             textAlignment={'center'}
             textFontWeight
           />
@@ -53,8 +54,8 @@ const LocationModal = () => {
             style={{
               borderTopWidth: 1,
               borderBottomWidth: 1,
-              borderBottomColor: AppColors.WHITE,
-              borderTopColor: AppColors.WHITE,
+              borderBottomColor: AppColors.appBgColor,
+              borderTopColor: AppColors.appBgColor,
               paddingVertical: responsiveHeight(3),
             }}>
             <AppTextInput
@@ -64,17 +65,18 @@ const LocationModal = () => {
                 <Icon
                   name="location-sharp"
                   size={responsiveFontSize(2)}
-                  color="#fff"
+                  color={AppColors.BLACK}
                 />
               }
             />
           </View>
           <AppButton
             title={'Continue'}
-            textColor={AppColors.BLACK}
+            textColor={AppColors.WHITE}
             textSize={2}
+            btnPadding={18}
             handlePress={() => {
-              navigation.navigate('PhotoIdCard');
+              navigateToRoute('CreateNewPin');
             }}
           />
 
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modal: {
-    backgroundColor: '#2f2f2f',
+    backgroundColor: AppColors.WHITE,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     height: responsiveHeight(35),

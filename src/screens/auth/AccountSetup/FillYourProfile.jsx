@@ -22,101 +22,98 @@ import AppTextInput from '../../../components/AppTextInput';
 import AppButton from '../../../components/AppButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PhoneInputScreen from '../../../components/PhoneInput';
+import { useCustomNavigation } from '../../../utils/Hooks';
 
 const FillYourProfile = () => {
-  const navigation = useNavigation();
+  const {navigateToRoute} = useCustomNavigation();
 
   return (
-    <BackgroundScreen>
-      <ScrollView style={{flex: 1}}>
-        <AppHeader
-          onBackPress={() => navigation.goBack()}
-          heading={'Fill Your Profile'}
-        />
+    <ScrollView style={{flex: 1, backgroundColor: AppColors.WHITE}}>
+      <AppHeader onBackPress heading={'Fill Your Profile'} />
 
-        <LineBreak space={4} />
+      <LineBreak space={4} />
 
-        <View style={{flex: 1, alignItems: 'center'}}>
-          <ImageBackground
-            source={AppImages.BG}
-            imageStyle={{borderRadius: 100, position: 'relative'}}
-            style={{width: 120, height: 120}}>
-            <View
+      <View style={{flex: 1, alignItems: 'center'}}>
+        <ImageBackground
+          source={AppImages.USER_LOCATION}
+          imageStyle={{borderRadius: 100, position: 'relative'}}
+          style={{width: 120, height: 120}}>
+          <View
+            style={{
+              position: 'absolute',
+              bottom: responsiveHeight(1),
+              right: 0,
+            }}>
+            <TouchableOpacity
               style={{
-                position: 'absolute',
-                bottom: responsiveHeight(1),
-                right: 0,
+                backgroundColor: AppColors.BTNCOLOURS,
+                padding: responsiveWidth(1),
+                borderRadius: 5,
               }}>
-              <TouchableOpacity
-                style={{
-                  backgroundColor: AppColors.BTNCOLOURS,
-                  padding: responsiveWidth(1),
-                  borderRadius: 5,
-                }}>
-                <MaterialIcons
-                  name={'edit'}
-                  size={responsiveFontSize(2)}
+              <MaterialIcons
+                name={'edit'}
+                size={responsiveFontSize(2)}
+                color={AppColors.WHITE}
+              />
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
+
+        <LineBreak space={3} />
+
+        <View style={{width: responsiveWidth(87), gap: 20}}>
+          <AppTextInput inputPlaceHolder={'Full Name'} />
+          <AppTextInput inputPlaceHolder={'Nickname'} />
+          <AppTextInput
+            inputPlaceHolder={'Date or Birth'}
+            rightIcon={
+              <TouchableOpacity>
+                <MaterialCommunityIcons
+                  name={'calendar-month-outline'}
+                  size={responsiveFontSize(2.5)}
                   color={AppColors.BLACK}
                 />
               </TouchableOpacity>
-            </View>
-          </ImageBackground>
+            }
+          />
+          <AppTextInput
+            inputPlaceHolder={'Email'}
+            rightIcon={
+              <MaterialCommunityIcons
+                name={'email-outline'}
+                size={responsiveFontSize(2.5)}
+                color={AppColors.BLACK}
+              />
+            }
+          />
+
+          <PhoneInputScreen />
+
+          <AppTextInput
+            inputPlaceHolder={'Gender'}
+            rightIcon={
+              <MaterialIcons
+                name={'arrow-drop-down'}
+                size={responsiveFontSize(2.5)}
+                color={AppColors.WHITE}
+              />
+            }
+          />
 
           <LineBreak space={3} />
 
-          <View style={{width: responsiveWidth(87), gap: 20}}>
-            <AppTextInput inputPlaceHolder={'Full Name'} />
-            <AppTextInput inputPlaceHolder={'Nickname'} />
-            <AppTextInput
-              inputPlaceHolder={'Date or Birth'}
-              rightIcon={
-                <TouchableOpacity>
-                  <MaterialCommunityIcons
-                    name={'calendar-month-outline'}
-                    size={responsiveFontSize(2.5)}
-                    color={AppColors.WHITE}
-                  />
-                </TouchableOpacity>
-              }
-            />
-            <AppTextInput
-              inputPlaceHolder={'Email'}
-              rightIcon={
-                <MaterialCommunityIcons
-                  name={'email-outline'}
-                  size={responsiveFontSize(2.5)}
-                  color={AppColors.WHITE}
-                />
-              }
-            />
-
-            <PhoneInputScreen />
-
-            <AppTextInput
-              inputPlaceHolder={'Gender'}
-              rightIcon={
-                <MaterialIcons
-                  name={'arrow-drop-down'}
-                  size={responsiveFontSize(2.5)}
-                  color={AppColors.WHITE}
-                />
-              }
-            />
-
-            <LineBreak space={3} />
-
-            <AppButton
-              title={'Continue'}
-              textColor={AppColors.BLACK}
-              textSize={2}
-              handlePress={() => {
-                navigation.navigate('SetLocation');
-              }}
-            />
-          </View>
+          <AppButton
+            title={'Continue'}
+            textColor={AppColors.WHITE}
+            textSize={2}
+            btnPadding={18}
+            handlePress={() => {
+              navigateToRoute('SetLocation');
+            }}
+          />
         </View>
-      </ScrollView>
-    </BackgroundScreen>
+      </View>
+    </ScrollView>
   );
 };
 

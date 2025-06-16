@@ -39,10 +39,9 @@ const PhoneInputScreen = () => {
           paddingHorizontal: responsiveWidth(7),
           height: responsiveHeight(7),
           borderRadius: 12,
-          borderWidth: 1,
-          borderColor: AppColors.WHITE,
+          backgroundColor: AppColors.inputBg,
         }}
-        textStyle={{color: AppColors.WHITE, marginLeft: 10}}
+        textStyle={{color: AppColors.BLACK, marginLeft: 10}}
         autoFormat
         textProps={{
           placeholder: '000 000 000',

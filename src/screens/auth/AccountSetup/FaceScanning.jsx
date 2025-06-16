@@ -2,23 +2,23 @@
 import React, {useState} from 'react';
 import {View, ImageBackground} from 'react-native';
 import AppImages from '../../../assets/images/AppImages';
-import {useNavigation} from '@react-navigation/native';
 import AppHeader from '../../../components/AppHeader';
 import AppText from '../../../components/AppTextComps/AppText';
 import AppColors from '../../../utils/AppColors';
 import LineBreak from '../../../components/LineBreak';
 import AppButton from '../../../components/AppButton';
 import CongratulationsModal from '../../../components/CongratulationsModal';
+import {useCustomNavigation} from '../../../utils/Hooks';
 
 const FaceScanning = () => {
-  const navigation = useNavigation();
+  const {navigateToRoute} = useCustomNavigation();
   const [showCongratsModal, setShowCongratsModal] = useState(false);
 
   return (
     <ImageBackground
       source={AppImages.FACE_SCAN}
       style={{flex: 1, padding: 20}}>
-      <AppHeader onBackPress={() => navigation.goBack()} />
+      <AppHeader onBackPress backIconColor={AppColors.WHITE} />
 
       <LineBreak space={5} />
 
@@ -55,7 +55,7 @@ const FaceScanning = () => {
             setShowCongratsModal(true);
             setTimeout(() => {
               setShowCongratsModal(false);
-              navigation.navigate('Login');
+              navigateToRoute('Login');
             }, 1000);
           }}
           btnWidth={42}
@@ -64,13 +64,13 @@ const FaceScanning = () => {
         />
         <AppButton
           title={'Continue'}
-          textColor={AppColors.BLACK}
+          textColor={AppColors.WHITE}
           textSize={2}
           handlePress={() => {
             setShowCongratsModal(true);
             setTimeout(() => {
               setShowCongratsModal(false);
-              navigation.navigate('Main');
+              navigateToRoute('Main');
             }, 1000);
           }}
           btnWidth={42}

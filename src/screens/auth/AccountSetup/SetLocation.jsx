@@ -1,39 +1,30 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, StatusBar, ImageBackground} from 'react-native';
+import {View, ImageBackground} from 'react-native';
 import AppHeader from '../../../components/AppHeader';
-import {useNavigation} from '@react-navigation/native';
 import AppColors from '../../../utils/AppColors';
-import {
-  responsiveHeight,
-  responsiveWidth,
-} from '../../../utils/Responsive_Dimensions';
+import {responsiveHeight} from '../../../utils/Responsive_Dimensions';
 import AppImages from '../../../assets/images/AppImages';
 import LocationModal from '../../../components/LocationModal';
 
 const SetLocation = () => {
-  const navigation = useNavigation();
-
   return (
     <View style={{flex: 1}}>
-      <StatusBar backgroundColor={AppColors.BLACK} />
       <View
         style={{
-          backgroundColor: AppColors.BLACK,
-          paddingHorizontal: responsiveWidth(4),
-          paddingVertical: responsiveHeight(3),
+          backgroundColor: AppColors.WHITE,
+          paddingBottom: responsiveHeight(4),
+          paddingTop: responsiveHeight(2),
         }}>
         <AppHeader
-          onBackPress={() => {
-                navigation.goBack();
-          }}
+          onBackPress
           heading={'Set Your Location'}
         />
       </View>
 
       <ImageBackground source={AppImages.LOCATION} style={{flex: 1}}>
         <View style={{flex: 1, justifyContent: 'flex-end'}}>
-        <LocationModal />
+          <LocationModal />
         </View>
       </ImageBackground>
     </View>
