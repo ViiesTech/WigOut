@@ -1,0 +1,132 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable jsx-quotes */
+import React from 'react';
+import {FlatList, ScrollView, TouchableOpacity, View} from 'react-native';
+import AppHeader from '../../components/AppHeader';
+import LineBreak from '../../components/LineBreak';
+import {Image} from 'react-native';
+import AppImages from '../../assets/images/AppImages';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from '../../utils/Responsive_Dimensions';
+import AppText from '../../components/AppTextComps/AppText';
+import AppColors from '../../utils/AppColors';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AppButton from '../../components/AppButton';
+import {useCustomNavigation} from '../../utils/Hooks';
+
+const data = [
+  {
+    id: 1,
+    icon: (
+      <Ionicons
+        name={'chatbubble-ellipses'}
+        size={responsiveFontSize(3.3)}
+        color={AppColors.WHITE}
+      />
+    ),
+    title: 'via SMS:',
+    message: '+1 111****99',
+  },
+  {
+    id: 2,
+    icon: (
+      <MaterialIcons
+        name={'email'}
+        size={responsiveFontSize(3.3)}
+        color={AppColors.WHITE}
+      />
+    ),
+    title: 'via Email:',
+    message: 'and***ley@yourdomain.com',
+  },
+];
+
+const ForgotPassword = () => {
+  const {navigateToRoute} = useCustomNavigation();
+
+  return (
+    <ScrollView style={{flex: 1, backgroundColor: AppColors.WHITE}}>
+      <AppHeader onBackPress heading={'Forgot Password'} />
+
+      <LineBreak space={8} />
+
+      <View style={{paddingHorizontal: responsiveWidth(5)}}>
+        <Image
+          source={AppImages.MOBILE}
+          style={{width: responsiveWidth(90), height: responsiveHeight(30)}}
+          resizeMode="contain"
+        />
+
+        <LineBreak space={3} />
+
+        <AppText
+          title={
+            'Select which contact details should we use to reset your password'
+          }
+          textColor={AppColors.BLACK}
+          textSize={2.1}
+        />
+
+        <LineBreak space={3} />
+
+        <FlatList
+          data={data}
+          contentContainerStyle={{gap: 15}}
+          renderItem={({item}) => {
+            return (
+              <TouchableOpacity
+                style={{
+                  borderWidth: 3,
+                  borderColor: AppColors.BTNCOLOURS,
+                  paddingHorizontal: responsiveWidth(4),
+                  paddingVertical: responsiveHeight(2),
+                  borderRadius: 30,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 15,
+                }}>
+                <View
+                  style={{
+                    backgroundColor: AppColors.BTNCOLOURS,
+                    borderRadius: 100,
+                    padding: responsiveWidth(5),
+                  }}>
+                  {item.icon}
+                </View>
+                <View style={{gap: 5}}>
+                  <AppText
+                    title={item.title}
+                    textColor={AppColors.GRAY}
+                    textSize={1.6}
+                  />
+                  <AppText
+                    title={item.message}
+                    textColor={AppColors.BLACK}
+                    textSize={1.9}
+                    textFontWeight
+                  />
+                </View>
+              </TouchableOpacity>
+            );
+          }}
+        />
+
+        <LineBreak space={4} />
+
+        <AppButton
+          title={'Continue'}
+          textColor={AppColors.WHITE}
+          textSize={2}
+          btnPadding={15}
+          handlePress={() => navigateToRoute('OtpVerification')}
+        />
+      </View>
+    </ScrollView>
+  );
+};
+
+export default ForgotPassword;

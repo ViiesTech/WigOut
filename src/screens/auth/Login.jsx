@@ -173,6 +173,16 @@ const Login = () => {
               btnPadding={18}
               btnWidth={90}
             />
+            <LineBreak space={2} />
+            <TouchableOpacity onPress={() => navigateToRoute('ForgotPassword')}>
+              <AppText
+                title={'Forgot the password?'}
+                textAlignment={'center'}
+                textColor={AppColors.BTNCOLOURS}
+                textSize={2}
+                textFontWeight
+              />
+            </TouchableOpacity>
             <LineBreak space={6} />
             <View style={{flexDirection: 'row', gap: 20, alignItems: 'center'}}>
               <View

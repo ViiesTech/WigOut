@@ -4,6 +4,9 @@ import OnBoarding from '../screens/auth/OnBoarding';
 import GetStarted from '../screens/auth/GetStarted';
 import Login from '../screens/auth/Login';
 import SignUp from '../screens/auth/SignUp';
+import ForgotPassword from '../screens/auth/ForgotPassword';
+import OtpVerification from '../screens/auth/OtpVerification';
+import CreateNewPassword from '../screens/auth/CreateNewPassword';
 
 const Stack = createStackNavigator();
 const Auth = () => {
@@ -15,6 +18,9 @@ const Auth = () => {
       <Stack.Screen name="GetStarted" component={GetStarted} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+      <Stack.Screen name="OtpVerification" component={OtpVerification} />
+      <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
     </Stack.Navigator>
   );
 };

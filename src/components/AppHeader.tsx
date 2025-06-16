@@ -44,7 +44,7 @@ const AppHeader = ({onBackPress, heading, rightIcon, middleIcon, backIconColor}:
         ) : (
           <AppText
             title={heading}
-            textColor={backIconColor ? backIconColor : AppColors.WHITE}
+            textColor={backIconColor ? backIconColor : AppColors.BLACK}
             textFontWeight
             textSize={2.4}
           />
