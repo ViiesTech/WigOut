@@ -38,4 +38,5 @@ export default AppImages = {
   main_logo: require('./app_main_logo.png'),
   get_started: require('./get_started.png'),
   signup_logo: require('./signup_logo.png'),
+  home_bg: require('./home_bg.png'),
 };
