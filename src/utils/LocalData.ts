@@ -3,19 +3,19 @@
 import AppImages from "../assets/images/AppImages";
 
 export const recommendedData = [
-    {id: 1, cardImg: AppImages.FASTIVAL, title: 'National Music Festival', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'Grand Park, New York', isFav: true},
-    {id: 2, cardImg: AppImages.FASTIVAL, title: 'National Music Festival', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'Grand Park, New York', isFav: false}
+    {id: 1, cardImg: AppImages.resturant, title: 'Restaurant name', location: 'Grand Park, New York', isFav: true},
+    {id: 2, cardImg: AppImages.resturant, title: 'Restaurant name', location: 'Grand Park, New York', isFav: false}
 ];
 
 export const popolarEventData = {id: 1, cardImg: AppImages.FASTIVAL, title: 'National Music Festival', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'Grand Park, New York', isFav: true};
 
 export const popularEventData = [
-    {id: 1, cardImg: AppImages.FASTIVAL, title: 'Art Workshops', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'New Avenue, Wave', isFav: true},
-    {id: 2, cardImg: AppImages.FASTIVAL, title: 'Music Concert', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'Grand Park, New York', isFav: false},
-    {id: 3, cardImg: AppImages.FASTIVAL, title: 'Tech Seminar', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'Grand Park, New York', isFav: false},
-    {id: 4, cardImg: AppImages.FASTIVAL, title: 'Mural Painting', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'Grand Park, New York', isFav: true},
-    {id: 5, cardImg: AppImages.FASTIVAL, title: 'Fitness & Gym Traning', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'Grand Park, New York', isFav: true},
-    {id: 6, cardImg: AppImages.FASTIVAL, title: 'DJ Music & Concert', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'Grand Park, New York', isFav: false},
+    {id: 1, cardImg: AppImages.resturant, title: 'Beauty Saloon', location: 'New Avenue, Wave', isFav: true},
+    {id: 2, cardImg: AppImages.resturant, title: 'Lorem Ipsum', location: 'Grand Park, New York', isFav: false},
+    {id: 3, cardImg: AppImages.resturant, title: 'Lorem Ipsum', location: 'Grand Park, New York', isFav: false},
+    {id: 4, cardImg: AppImages.resturant, title: 'Lorem Ipsum', location: 'Grand Park, New York', isFav: true},
+    {id: 5, cardImg: AppImages.resturant, title: 'Lorem Ipsum', location: 'Grand Park, New York', isFav: true},
+    {id: 6, cardImg: AppImages.resturant, title: 'Lorem Ipsum', location: 'Grand Park, New York', isFav: false},
 ];
 
 export const completedData = [
@@ -50,7 +50,7 @@ export const favEventsData = [
     {id: 6, cardImg: AppImages.FASTIVAL, title: 'DJ Music & Concert', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'Grand Park, New York', isFav: false},
 ];
 
-export const oneData = {id: 1, cardImg: AppImages.FASTIVAL, title: 'Art Workshops', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'New Avenue, Wave', isFav: true};
+export const oneData = {id: 1, cardImg: AppImages.home_bg, title: 'Art Workshops', date: 'Mon, Dec 24 • 18.00 - 23.00 PM', location: 'New Avenue, Wave', isFav: true};
 
 export const viewMoreData = {id: 1, cardImg: AppImages.DANCER, title: 'Last Minute Deals 🔥'};
 

@@ -10,6 +10,8 @@ import AppColors from '../utils/AppColors';
 import Home from '../screens/main/Home';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Explore from '../screens/main/Explore/Explore';
+import Notifications from '../screens/main/Notifications';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -20,6 +22,7 @@ const Main = () => {
       initialRouteName="Main"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Main" component={MyTabs} />
+      <Stack.Screen name="Notifications" component={Notifications} />
     </Stack.Navigator>
   );
 };
@@ -61,10 +64,10 @@ function MyTabs() {
         },
       })}>
       <Tab.Screen name="Home" component={Home} />
-      {/* <Tab.Screen name="Explore" component={Explore} />
-      <Tab.Screen name="Favorites" component={Favourites} />
-      <Tab.Screen name="Tickets" component={Tickets} />
-      <Tab.Screen name="Profile" component={Profile} /> */}
+      <Tab.Screen name="Explore" component={Explore} />
+      {/* <Tab.Screen name="Favorites" component={Favourites} /> */}
+      {/* <Tab.Screen name="Tickets" component={Tickets} /> */}
+      {/* <Tab.Screen name="Profile" component={Profile} /> */}
     </Tab.Navigator>
   );
 }

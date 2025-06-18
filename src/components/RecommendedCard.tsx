@@ -46,6 +46,7 @@ type cardProps = {
   isHeartIconMoveToEnd?: any;
   badgeWidth?:any;
   badgeHeight?:any;
+  cardContainerBackgroundColor?:any;
 };
 
 const RecommendedCard = ({
@@ -79,14 +80,17 @@ const RecommendedCard = ({
   isHeartIconMoveToEnd,
   badgeWidth,
   badgeHeight,
+  cardContainerBackgroundColor,
 }: cardProps) => {
   return (
     <>
       <TouchableOpacity
         onPress={cardOnPress}
         style={{
-          borderWidth: 1,
-          borderColor: AppColors.WHITE,
+          borderWidth: cardContainerBackgroundColor ? 0 : 1,
+          borderColor: AppColors.LIGHTGRAY,
+          elevation: 5,
+          backgroundColor: AppColors.WHITE,
           borderRadius: containerborderRadius ? containerborderRadius : 40,
           width: cardContainerWidth
             ? responsiveWidth(cardContainerWidth)
@@ -156,20 +160,20 @@ const RecommendedCard = ({
             }}>
             <AppText
               title={item.title}
-              textColor={AppColors.WHITE}
+              textColor={AppColors.BLACK}
               textSize={titleFontSize ? titleFontSize : 2.5}
               textFontWeight
               numberOfLines={titleNumOfLines}
               textwidth={titleMaxWidth}
             />
-            <AppText
+           {item.date && <AppText
               title={item.date}
               textColor={AppColors.BTNCOLOURS}
               textSize={dateFontSize ? dateFontSize : 1.9}
               textFontWeight
               numberOfLines={dateNumOfLines}
               textwidth={dateMaxWidth}
-            />
+            />}
 
             <View
               style={{
@@ -198,7 +202,7 @@ const RecommendedCard = ({
                 />
                 <AppText
                   title={item.location}
-                  textColor={AppColors.WHITE}
+                  textColor={AppColors.GRAY}
                   textSize={locationFontSize ? locationFontSize : 2}
                   numberOfLines={locationNumOfLines}
                   textwidth={locationMaxWidth}

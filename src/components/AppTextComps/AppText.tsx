@@ -20,6 +20,7 @@ type textProps = {
   borderBottomColor?:any;
   borderBottomWidth?:any;
   paddingBottom?:any;
+  textTransform?:any;
 };
 
 const AppText = ({
@@ -34,6 +35,7 @@ const AppText = ({
   borderBottomColor,
   borderBottomWidth,
   paddingBottom,
+  textTransform,
 }: textProps) => {
   return (
     <Text
@@ -50,6 +52,7 @@ const AppText = ({
         lineHeight: lineHeight ? responsiveHeight(lineHeight) : null,
         borderBottomWidth: borderBottomWidth ? borderBottomWidth : null,
         borderBottomColor: borderBottomColor ? borderBottomColor : null,
+        textTransform: textTransform ? textTransform : null,
         paddingBottom: paddingBottom ? responsiveHeight(paddingBottom) : null,
       }}>
       {title}
