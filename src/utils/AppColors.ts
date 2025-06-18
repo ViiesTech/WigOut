@@ -23,12 +23,14 @@ type Colors = {
     GRAY: string
     inputBg: string
     inputBlur: string
+    LIGHT_BTNCOLOURS: string
   };
 
 const AppColors: Colors = {
     BLACK: "#000000",
     WHITE: "#FFFFFF",
     BTNCOLOURS: "#47082E",
+    LIGHT_BTNCOLOURS: "#6e3357",
     LIGHTGRAY: "#D9D9D9",
     BLUE: "#001AB0",
     GRAY: "#777777",

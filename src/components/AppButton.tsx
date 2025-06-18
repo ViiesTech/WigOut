@@ -18,6 +18,7 @@ type props = {
   borderColor?: any;
   borderRadius?: any;
   leftIcon?: any;
+  activeOpacity?:any;
 };
 const AppButton = ({
   title,
@@ -32,10 +33,12 @@ const AppButton = ({
   textColor = AppColors.WHITE,
   textFontWeight = true,
   textSize = 2.5,
+  activeOpacity,
 }: props) => {
   return (
     <TouchableOpacity
       onPress={handlePress}
+      activeOpacity={activeOpacity}
       style={{
         backgroundColor: btnBackgroundColor
           ? btnBackgroundColor

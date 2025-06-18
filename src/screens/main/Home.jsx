@@ -374,7 +374,7 @@ const Home = () => {
               return (
                 <RecommendedCard
                   item={item}
-                  cardOnPress={() => {}}
+                  cardOnPress={() => navigateToRoute('HomeDetails')}
                   bottomPadding={0.1}
                   cardWidth={35}
                   cardContainerWidth={75}
@@ -404,7 +404,7 @@ const Home = () => {
               return (
                 <RecommendedCard
                   item={item}
-                  cardOnPress={() => {}}
+                  cardOnPress={() => navigateToRoute('HomeDetails')}
                   cardContainerWidth={43}
                   cardWidth={19}
                   titleFontSize={2}

@@ -50,4 +50,5 @@ export default AppImages = {
   small_brand_bg: require('./small_brand_bg.png'),
   big_map: require('./big_map.png'),
   resturant: require('./resturant.png'),
+  chart: require('./chart.png'),
 };

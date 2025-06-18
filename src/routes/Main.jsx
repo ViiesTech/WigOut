@@ -12,6 +12,11 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Explore from '../screens/main/Explore/Explore';
 import Notifications from '../screens/main/Notifications';
+import HomeDetails from '../screens/main/HomeDetails';
+import Favorites from '../screens/main/Favourties/Favorites';
+import Profile from '../screens/main/Profile/Profile';
+import Lists from '../screens/main/Lists/Lists';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -23,6 +28,7 @@ const Main = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Main" component={MyTabs} />
       <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="HomeDetails" component={HomeDetails} />
     </Stack.Navigator>
   );
 };
@@ -32,7 +38,7 @@ function MyTabs() {
     <Tab.Navigator
       screenOptions={({route}) => ({
         headerShown: false,
-        tabBarLabelStyle: {fontSize: responsiveFontSize(1.7)},
+        tabBarLabelStyle: {fontSize: responsiveFontSize(1.4)},
         tabBarActiveTintColor: AppColors.WHITE,
         tabBarStyle: {
           height: responsiveHeight(10),
@@ -46,28 +52,30 @@ function MyTabs() {
 
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Profile') {
+          } else if (route.name === 'Help Me') {
             iconName = focused ? 'person' : 'person-outline';
-          } else if (route.name === 'Tickets') {
-            iconName = focused ? 'ticket' : 'ticket-outline';
-          } else if (route.name === 'Favorites') {
+          } else if (route.name === 'Lists') {
+            iconName = focused ? 'clipboard-list' : 'clipboard-list';
+          } else if (route.name === 'My Journal') {
             iconName = focused ? 'heart' : 'heart-outline';
-          } else if (route.name === 'Explore') {
+          } else if (route.name === 'Discover') {
             iconName = focused ? 'explore' : 'explore';
           }
 
-          if (route.name === 'Explore') {
+          if (route.name === 'Discover') {
             return <MaterialIcons name={iconName} size={size} color={color} />;
+          } else if (route.name === 'Lists') {
+            return <FontAwesome5 name={iconName} size={size} color={color} />;
           } else {
             return <Ionicons name={iconName} size={size} color={color} />;
           }
         },
       })}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Explore" component={Explore} />
-      {/* <Tab.Screen name="Favorites" component={Favourites} /> */}
-      {/* <Tab.Screen name="Tickets" component={Tickets} /> */}
-      {/* <Tab.Screen name="Profile" component={Profile} /> */}
+      <Tab.Screen name="Discover" component={Explore} />
+      <Tab.Screen name="My Journal" component={Favorites} />
+      <Tab.Screen name="Lists" component={Lists} />
+      <Tab.Screen name="Help Me" component={Profile} />
     </Tab.Navigator>
   );
 }

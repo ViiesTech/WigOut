@@ -3,32 +3,49 @@ import React from 'react';
 import {FlatList, TouchableOpacity} from 'react-native';
 import AppColors from '../utils/AppColors';
 import AppText from './AppTextComps/AppText';
+import {
+  responsiveHeight,
+  responsiveWidth,
+} from '../utils/Responsive_Dimensions';
 
-const TopTabs = ({data, setIsSelectedTab, isSelectedTab, textwidth}: any) => {
+const TopTabs = ({
+  data,
+  setIsSelectedTab,
+  isSelectedTab,
+}: any) => {
   return (
     <FlatList
       data={data}
       horizontal
-      contentContainerStyle={{flex: 1, justifyContent: 'space-evenly'}}
+      contentContainerStyle={{
+        backgroundColor: AppColors.LIGHT_BTNCOLOURS,
+        borderRadius: 100,
+      }}
       renderItem={({item}) => {
         return (
-          <TouchableOpacity onPress={() => setIsSelectedTab({id: item.id})}>
+          <TouchableOpacity
+            style={{
+              backgroundColor:
+                isSelectedTab?.id == item?.id
+                  ? AppColors.BTNCOLOURS
+                  : AppColors.LIGHT_BTNCOLOURS,
+                  borderRadius: 100,
+              paddingVertical: responsiveHeight(2),
+              paddingHorizontal: responsiveWidth(7),
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            activeOpacity={0.8}
+            onPress={() => setIsSelectedTab({id: item.id})}>
             <AppText
               title={item.title}
               textColor={
-                isSelectedTab.id === item.id
+                isSelectedTab?.id == item?.id
                   ? AppColors.WHITE
-                  : AppColors.DARKGRAY
-              }
-              textSize={2}
-              borderBottomWidth={isSelectedTab.id === item.id ? 4 : 4}
-              textwidth={textwidth ? textwidth : 30}
-              borderBottomColor={
-                isSelectedTab.id === item.id
-                  ? AppColors.BTNCOLOURS
                   : AppColors.WHITE
               }
-              paddingBottom={2}
+              textSize={1.7}
+              textFontWeight
               textAlignment={'center'}
             />
           </TouchableOpacity>

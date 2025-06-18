@@ -16,53 +16,43 @@ import {
 import AppHeader from './AppHeader';
 import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Feather from 'react-native-vector-icons/Feather';
 import AppColors from '../utils/AppColors';
 
 const slides = [
   {
     key: '1',
-    image: AppImages.FASTIVAL_BIG,
+    image: AppImages.resturant,
   },
   {
     key: '2',
-    image: AppImages.FASTIVAL_BIG,
+    image: AppImages.resturant,
   },
   {
     key: '3',
-    image: AppImages.FASTIVAL_BIG,
+    image: AppImages.resturant,
   },
 ];
 
-const ImageIntroSlider = ({setIshowSharingModal}: any) => {
+const ImageIntroSlider = () => {
   const navigation = useNavigation();
   const renderItem = ({item}: any) => {
     return (
       <ImageBackground source={item.image} style={styles.image}>
         <View
           style={{
-            paddingHorizontal: responsiveWidth(4),
-            paddingVertical: responsiveHeight(4),
+            paddingVertical: responsiveHeight(2),
           }}>
           <AppHeader
             onBackPress={() => navigation.goBack()}
+            backIconColor={AppColors.WHITE}
             rightIcon={
-              <View style={{flexDirection: 'row', gap: 20}}>
-                <TouchableOpacity>
-                  <AntDesign
-                    name={'hearto'}
-                    size={responsiveFontSize(2.5)}
-                    color={AppColors.WHITE}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setIshowSharingModal(true)}>
-                  <Feather
-                    name={'send'}
-                    size={responsiveFontSize(2.5)}
-                    color={AppColors.WHITE}
-                  />
-                </TouchableOpacity>
-              </View>
+              <TouchableOpacity>
+                <AntDesign
+                  name={'hearto'}
+                  size={responsiveFontSize(2.5)}
+                  color={AppColors.WHITE}
+                />
+              </TouchableOpacity>
             }
           />
         </View>
@@ -78,12 +68,13 @@ const ImageIntroSlider = ({setIshowSharingModal}: any) => {
         showSkipButton={false}
         showNextButton={false}
         showDoneButton={false}
-        dotStyle={{backgroundColor: '#ccc',
+        dotStyle={{
+          backgroundColor: '#ccc',
           height: responsiveWidth(2),
           width: responsiveWidth(2),
         }}
         activeDotStyle={{
-          backgroundColor: '#584CF4',
+          backgroundColor: AppColors.BTNCOLOURS,
           width: responsiveWidth(10),
           height: responsiveWidth(1.5),
         }}
