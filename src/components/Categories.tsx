@@ -23,8 +23,8 @@ const Categories = ({
           isSelectedCategorie.id === item.id
             ? activeButtonBgColor
               ? activeButtonBgColor
-              : AppColors.THEME_COLOR
-            : AppColors.WHITE,
+              : AppColors.BTNCOLOURS
+            : AppColors.BTNCOLOURS,
         paddingHorizontal: responsiveWidth(5),
         paddingVertical: responsiveHeight(0.8),
         borderRadius: 20,
@@ -32,16 +32,16 @@ const Categories = ({
           isSelectedCategorie.id === item.id
             ? activeButtonBgColor
               ? activeButtonBgColor
-              : AppColors.THEME_COLOR
+              : AppColors.BTNCOLOURS
             : null,
       }}
       onPress={() => SetIsSelectedCategorie({id: item.id})}>
       <AppText
         title={item.title}
         textColor={
-          activeButtonBgColor && isSelectedCategorie.id === item.id
-            ? AppColors.BLACK
-            : AppColors.WHITE
+          isSelectedCategorie.id === item.id
+            ? AppColors.WHITE
+            : AppColors.BTNCOLOURS
         }
         textSize={buttonFontSize ? buttonFontSize : 1.8}
         textFontWeight

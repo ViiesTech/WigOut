@@ -116,9 +116,9 @@ const secondProfileMenus = [
   {
     id: 11,
     icon: renderIcon(FontAwesome5, 'star', responsiveFontSize(2)),
-    title: 'Rate us',
+    title: 'Visit History',
     rightArrow,
-    navTo: '',
+    navTo: 'VisitHistory',
   },
   {
     id: 12,

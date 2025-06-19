@@ -77,7 +77,8 @@ const Security = () => {
               textColor={AppColors.BTNCOLOURS}
               btnBackgroundColor={AppColors.appBgColor}
               textSize={2}
-              handlePress={() => navigation.navigate('ReviewSummary')}
+              btnPadding={15}
+              handlePress={() => {}}
             />
             <LineBreak space={2} />
             <AppButton
@@ -85,7 +86,8 @@ const Security = () => {
               textColor={AppColors.BTNCOLOURS}
               btnBackgroundColor={AppColors.appBgColor}
               textSize={2}
-              handlePress={() => navigation.navigate('ReviewSummary')}
+              btnPadding={15}
+              handlePress={() => {}}
             />
           </View>
         )}

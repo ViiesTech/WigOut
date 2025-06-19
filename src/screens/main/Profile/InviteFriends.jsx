@@ -3,13 +3,11 @@
 import React from 'react';
 import {
   View,
-  Text,
   ScrollView,
   FlatList,
   Image,
   TouchableOpacity,
 } from 'react-native';
-import BackgroundScreen from '../../../components/AppTextComps/BackgroundScreen';
 import {useNavigation} from '@react-navigation/native';
 import AppHeader from '../../../components/AppHeader';
 import LineBreak from '../../../components/LineBreak';
@@ -98,7 +96,8 @@ const InviteFriends = () => {
   const navigation = useNavigation();
 
   return (
-    <BackgroundScreen>
+    <ScrollView
+      contentContainerStyle={{flexGrow: 1, backgroundColor: AppColors.WHITE}}>
       <AppHeader
         onBackPress={() => navigation.goBack()}
         heading={'Invite Friends'}
@@ -108,6 +107,7 @@ const InviteFriends = () => {
       <FlatList
         data={data}
         ItemSeparatorComponent={() => <LineBreak space={3} />}
+        ListFooterComponent={() => <LineBreak space={3} />}
         renderItem={({item}) => {
           return (
             <View
@@ -115,6 +115,7 @@ const InviteFriends = () => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
+                paddingHorizontal: responsiveWidth(5),
               }}>
               <View
                 style={{flexDirection: 'row', gap: 15, alignItems: 'center'}}>
@@ -129,13 +130,13 @@ const InviteFriends = () => {
                 <View>
                   <AppText
                     title={item.name}
-                    textColor={AppColors.WHITE}
+                    textColor={AppColors.BLACK}
                     textSize={2}
                     textFontWeight
                   />
                   <AppText
                     title={item.number}
-                    textColor={AppColors.LIGHTGRAY}
+                    textColor={AppColors.GRAY}
                     textSize={1.5}
                   />
                 </View>
@@ -148,11 +149,11 @@ const InviteFriends = () => {
                   borderRadius: 40,
                   backgroundColor: item.isFollow
                     ? 'transparent'
-                    : AppColors.THEME_COLOR,
+                    : AppColors.BTNCOLOURS,
                   borderWidth: 2,
                   borderColor: item.isFollow
                     ? AppColors.BTNCOLOURS
-                    : AppColors.THEME_COLOR,
+                    : AppColors.BTNCOLOURS,
                 }}>
                 <AppText
                   title={item.isFollow ? 'Invited' : 'Invite'}
@@ -167,7 +168,7 @@ const InviteFriends = () => {
           );
         }}
       />
-    </BackgroundScreen>
+    </ScrollView>
   );
 };
 

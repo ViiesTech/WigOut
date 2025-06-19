@@ -25,14 +25,14 @@ const FAQItem = ({question, answer, isOpen, onPress}: any) => {
           isOpen && {
             borderBottomWidth: 1,
             paddingBottom: responsiveHeight(1.5),
-            borderBottomColor: AppColors.WHITE,
+            borderBottomColor: AppColors.appBgColor,
           },
         ]}>
         <Text style={styles.question}>{question}</Text>
         <MaterialIcons
           name={isOpen ? 'arrow-drop-up' : 'arrow-drop-down'}
           size={responsiveFontSize(3)}
-          color={AppColors.WHITE}
+          color={AppColors.BTNCOLOURS}
         />
       </TouchableOpacity>
       {isOpen && <Text style={styles.answer}>{answer}</Text>}
@@ -87,8 +87,7 @@ const styles = StyleSheet.create({
   },
   faqItem: {
     marginBottom: responsiveHeight(2),
-    borderWidth: 1,
-    borderColor: AppColors.WHITE,
+    backgroundColor: AppColors.WHITE,
     borderRadius: 15,
     padding: responsiveWidth(5),
   },
@@ -97,9 +96,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   question: {
-    fontSize: 16,
+    fontSize: responsiveFontSize(2),
     fontWeight: '600',
-    color: AppColors.WHITE,
+    color: AppColors.BLACK,
   },
   toggle: {
     fontSize: 20,
@@ -107,8 +106,8 @@ const styles = StyleSheet.create({
   },
   answer: {
     marginTop: 10,
-    fontSize: 15,
-    color: AppColors.WHITE,
+    fontSize: responsiveFontSize(1.8),
+    color: AppColors.GRAY,
   },
 });
 

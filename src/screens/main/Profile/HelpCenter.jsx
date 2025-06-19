@@ -2,11 +2,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {View, FlatList, TouchableOpacity, ScrollView} from 'react-native';
-import BackgroundScreen from '../../../components/AppTextComps/BackgroundScreen';
 import {useNavigation} from '@react-navigation/native';
 import AppHeader from '../../../components/AppHeader';
 import LineBreak from '../../../components/LineBreak';
-import TopTabs from '../../../components/TopTabs';
 import Categories from '../../../components/Categories';
 import {helpCenterCategoriesData} from '../../../utils/LocalData';
 import FAQScreen from '../../../components/FAQScreen';
@@ -24,6 +22,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
+import LineTab from '../../../components/LineTab';
 
 const tabsData = [
   {id: 1, title: 'FAQ'},
@@ -105,15 +104,15 @@ const HelpCenter = () => {
   const [isSelectedCategorie, SetIsSelectedCategorie] = useState({id: 1});
 
   return (
-    <BackgroundScreen>
+    <View style={{flex: 1}}>
       <AppHeader
         onBackPress={() => navigation.goBack()}
         heading={'Help Center'}
       />
       <LineBreak space={4} />
 
-      <View>
-        <TopTabs
+      <View style={{paddingHorizontal: responsiveWidth(5)}}>
+        <LineTab
           data={tabsData}
           isSelectedTab={isSelectedTab}
           setIsSelectedTab={setIsSelectedTab}
@@ -124,7 +123,7 @@ const HelpCenter = () => {
 
       {isSelectedTab.id == 1 && (
         <>
-          <View>
+          <View style={{paddingHorizontal: responsiveWidth(5)}}>
             <FlatList
               data={helpCenterCategoriesData}
               horizontal
@@ -142,18 +141,18 @@ const HelpCenter = () => {
             />
           </View>
           <LineBreak space={3} />
-          <View>
+          <View style={{paddingHorizontal: responsiveWidth(5)}}>
             <SuggestionInput />
           </View>
           <LineBreak space={2} />
-          <View>
+          <View style={{paddingHorizontal: responsiveWidth(5)}}>
             <FAQScreen />
           </View>
         </>
       )}
 
       {isSelectedTab.id == 2 && (
-        <ScrollView style={{flex: 1}}>
+        <ScrollView style={{flex: 1, paddingHorizontal: responsiveWidth(5)}}>
           <FlatList
             data={cardData}
             ItemSeparatorComponent={() => <LineBreak space={3} />}
@@ -161,8 +160,7 @@ const HelpCenter = () => {
               return (
                 <TouchableOpacity
                   style={{
-                    borderWidth: 1,
-                    borderColor: AppColors.WHITE,
+                    backgroundColor: AppColors.WHITE,
                     paddingHorizontal: responsiveWidth(5),
                     paddingVertical: responsiveHeight(3),
                     borderRadius: 25,
@@ -182,7 +180,7 @@ const HelpCenter = () => {
                       {item.icon}
                       <AppText
                         title={item.title}
-                        textColor={AppColors.WHITE}
+                        textColor={AppColors.BLACK}
                         textSize={2}
                         textFontWeight
                       />
@@ -194,7 +192,7 @@ const HelpCenter = () => {
           />
         </ScrollView>
       )}
-    </BackgroundScreen>
+    </View>
   );
 };
 

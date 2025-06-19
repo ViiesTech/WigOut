@@ -11,6 +11,7 @@ import AppColors from '../utils/AppColors';
 
 const SuggestionInput = () => {
   const [query, setQuery] = useState('');
+  const [isFocused, setIsFocused] = useState({search: false});
   const [suggestions, setSuggestions] = useState<Array>([]);
   const data = [
     'Why did my payment did not working?',
@@ -42,19 +43,22 @@ const SuggestionInput = () => {
         inputPlaceHolder={'Search'}
         inputWidth={64}
         value={query}
+        isFocused={isFocused.search}
+        onFocus={() => setIsFocused(prev => ({...prev, search: true}))}
+        onBlur={() => setIsFocused(prev => ({...prev, search: false}))}
         onChangeText={handleSearch}
         logo={
           <Ionicons
             name={'search'}
             size={responsiveFontSize(2.5)}
-            color={AppColors.WHITE}
+            color={AppColors.GRAY}
           />
         }
         rightIcon={
           <FontAwesome6
             name={'sliders'}
             size={responsiveFontSize(2.5)}
-            color={AppColors.WHITE}
+            color={AppColors.BTNCOLOURS}
           />
         }
       />

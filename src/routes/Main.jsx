@@ -23,6 +23,9 @@ import Payments from '../screens/main/Profile/Payments';
 import LinkedAccounts from '../screens/main/Profile/LinkedAccounts';
 import Security from '../screens/main/Profile/Security';
 import Language from '../screens/main/Profile/Language';
+import HelpCenter from '../screens/main/Profile/HelpCenter';
+import InviteFriends from '../screens/main/Profile/InviteFriends';
+import VisitHistory from '../screens/main/Profile/VisitHistory';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -41,6 +44,9 @@ const Main = () => {
       <Stack.Screen name="LinkedAccounts" component={LinkedAccounts} />
       <Stack.Screen name="Security" component={Security} />
       <Stack.Screen name="Language" component={Language} />
+      <Stack.Screen name="HelpCenter" component={HelpCenter} />
+      <Stack.Screen name="InviteFriends" component={InviteFriends} />
+      <Stack.Screen name="VisitHistory" component={VisitHistory} />
     </Stack.Navigator>
   );
 };
