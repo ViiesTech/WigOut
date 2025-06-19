@@ -11,13 +11,15 @@ import FillYourProfile from '../screens/auth/AccountSetup/FillYourProfile';
 import SetLocation from '../screens/auth/AccountSetup/SetLocation';
 import CreateNewPin from '../screens/auth/AccountSetup/CreateNewPin';
 import FaceScanning from '../screens/auth/AccountSetup/FaceScanning';
+import Splash from '../screens/auth/Splash';
 
 const Stack = createStackNavigator();
 const Auth = () => {
   return (
     <Stack.Navigator
-      initialRouteName="OnBoarding"
+      initialRouteName="Splash"
       screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="OnBoarding" component={OnBoarding} />
       <Stack.Screen name="GetStarted" component={GetStarted} />
       <Stack.Screen name="Login" component={Login} />

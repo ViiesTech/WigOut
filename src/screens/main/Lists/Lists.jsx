@@ -14,6 +14,7 @@ import AppImages from '../../../assets/images/AppImages';
 import AppText from '../../../components/AppTextComps/AppText';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AppButton from '../../../components/AppButton';
+import { useCustomNavigation } from '../../../utils/Hooks';
 
 const tabsData = [
   {id: 1, title: 'Go Again'},
@@ -49,6 +50,7 @@ const data = [
 ];
 
 const Lists = () => {
+  const {navigateToRoute} = useCustomNavigation();
   const [isSelectedTab, setIsSelectedTab] = useState({id: 1});
 
   return (
@@ -157,6 +159,7 @@ const Lists = () => {
                             btnBackgroundColor={AppColors.BTNCOLOURS}
                             btnWidth={isSelectedTab.id == 3 ? 20 : 16}
                             borderRadius={4}
+                            handlePress={() => navigateToRoute('HomeDetails')}
                           />
                         </View>
                       </View>

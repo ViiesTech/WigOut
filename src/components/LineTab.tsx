@@ -27,7 +27,7 @@ const LineTab = ({data, setIsSelectedTab, isSelectedTab, textwidth}: any) => {
               borderBottomColor={
                 isSelectedTab.id === item.id
                   ? AppColors.BTNCOLOURS
-                  : AppColors.WHITE
+                  : AppColors.LIGHTGRAY
               }
               paddingBottom={2}
               textAlignment={'center'}
