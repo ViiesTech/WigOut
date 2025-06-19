@@ -17,6 +17,12 @@ import Favorites from '../screens/main/Favourties/Favorites';
 import Profile from '../screens/main/Profile/Profile';
 import Lists from '../screens/main/Lists/Lists';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import EditProfile from '../screens/main/Profile/EditProfile';
+import NotificationsSettings from '../screens/main/Profile/NotificationsSettings';
+import Payments from '../screens/main/Profile/Payments';
+import LinkedAccounts from '../screens/main/Profile/LinkedAccounts';
+import Security from '../screens/main/Profile/Security';
+import Language from '../screens/main/Profile/Language';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -29,6 +35,12 @@ const Main = () => {
       <Stack.Screen name="Main" component={MyTabs} />
       <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="HomeDetails" component={HomeDetails} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
+      <Stack.Screen name="NotificationsSettings" component={NotificationsSettings} />
+      <Stack.Screen name="Payments" component={Payments} />
+      <Stack.Screen name="LinkedAccounts" component={LinkedAccounts} />
+      <Stack.Screen name="Security" component={Security} />
+      <Stack.Screen name="Language" component={Language} />
     </Stack.Navigator>
   );
 };

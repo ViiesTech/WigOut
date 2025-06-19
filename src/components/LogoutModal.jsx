@@ -39,7 +39,7 @@ const LogoutModal = ({
               <AppText
                 title={'Logout'}
                 textSize={3}
-                textColor={AppColors.BLACK}
+                textColor={AppColors.RED_COLOR}
                 textAlignment={'center'}
                 textFontWeight
               />
@@ -61,12 +61,12 @@ const LogoutModal = ({
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <AppButton
                   title={'Cancel'}
-                  textColor={'#000000'}
+                  textColor={AppColors.BTNCOLOURS}
                   textSize={2}
                   handlePress={handleResetOnPress}
                   btnWidth={43}
                   btnPadding={15}
-                  btnBackgroundColor={'#EEEDFE'}
+                  btnBackgroundColor={'#f0ebee'}
                 />
                 <AppButton
                   title={'Yes, Logout'}
@@ -75,7 +75,7 @@ const LogoutModal = ({
                   handlePress={handleApplyOnPress}
                   btnWidth={43}
                   btnPadding={15}
-                  btnBackgroundColor={AppColors.THEME_COLOR}
+                  btnBackgroundColor={AppColors.BTNCOLOURS}
                 />
               </View>
               <LineBreak space={1} />

@@ -18,6 +18,10 @@ const TopTabs = ({
       data={data}
       horizontal
       contentContainerStyle={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
         backgroundColor: AppColors.LIGHT_BTNCOLOURS,
         borderRadius: 100,
       }}
