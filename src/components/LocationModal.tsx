@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/Ionicons'; // Install this library i
 import AppTextInput from './AppTextInput';
 import AppButton from './AppButton';
 import AppColors from '../utils/AppColors';
-import {useNavigation} from '@react-navigation/native';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -13,20 +12,15 @@ import {
 } from '../utils/Responsive_Dimensions';
 import AppText from './AppTextComps/AppText';
 import LineBreak from './LineBreak';
-import { useCustomNavigation } from '../utils/Hooks';
 
-// type ModalProps = {
-//   visible?: any;
-//   setVisible?: any;
-//   onClose?: any;
-//   location?: any;
-//   onLocationChange?: any;
-//   onContinue?: any;
-// };
+type ModalProps = {
+  value?: any;
+  onChangeText?: any;
+  handlePress?: any;
+  loading?: any;
+};
 
-const LocationModal = () => {
-  const {navigateToRoute} = useCustomNavigation();
-
+const LocationModal = ({value, onChangeText, handlePress, loading}: ModalProps) => {
   return (
     <View style={styles.modal}>
       <View>
@@ -61,6 +55,8 @@ const LocationModal = () => {
             <AppTextInput
               inputPlaceHolder={'Times Square NYC, Manhattan'}
               inputWidth={73}
+              value={value}
+              onChangeText={onChangeText}
               rightIcon={
                 <Icon
                   name="location-sharp"
@@ -75,9 +71,8 @@ const LocationModal = () => {
             textColor={AppColors.WHITE}
             textSize={2}
             btnPadding={18}
-            handlePress={() => {
-              navigateToRoute('CreateNewPin');
-            }}
+            handlePress={handlePress}
+            loading={loading}
           />
 
           <LineBreak space={1} />

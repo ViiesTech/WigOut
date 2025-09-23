@@ -27,6 +27,7 @@ type props = {
   borderColor?: any;
   onBlur?: any;
   isFocused?: any;
+  readOnly?: any;
 };
 const AppTextInput = ({
   logo,
@@ -47,6 +48,7 @@ const AppTextInput = ({
   borderWidth,
   borderColor,
   isFocused,
+  readOnly,
 }: props) => {
   return (
     <View
@@ -84,6 +86,7 @@ const AppTextInput = ({
             ? placeholderTextfontWeight
             : null,
         }}
+        readOnly={readOnly}
         secureTextEntry={secureTextEntry}
         textAlignVertical={textAlignVertical}
         multiline={multiline}

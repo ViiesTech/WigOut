@@ -8,8 +8,7 @@ import {
   responsiveWidth,
 } from '../utils/Responsive_Dimensions';
 
-const PhoneInputScreen = () => {
-  const phoneRef = useRef(null);
+const PhoneInputScreen = ({phoneRef}) => {
   const countryPickerRef = useRef(null);
   const [pickerData, setPickerData] = useState([]);
 

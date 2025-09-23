@@ -24,6 +24,9 @@ import AppButton from '../../components/AppButton';
 import SVGXml from '../../components/SVGXML';
 import {AppIcons} from '../../assets/icons';
 import {useCustomNavigation} from '../../utils/Hooks';
+import {signIn} from '../../GlobalFunctions/auth';
+import {signUpAndSignInFormValidation} from '../../utils/Validation';
+import {ShowToast} from '../../utils/api_content';
 
 const socialIcons = [
   {
@@ -45,6 +48,33 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const {navigateToRoute} = useCustomNavigation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignIn = async () => {
+    const isValid = signUpAndSignInFormValidation(email, password);
+    if (isValid === true) {
+      setIsLoading(true);
+      const res = await signIn({
+        email: email,
+        password: password,
+      });
+
+      if (res.success) {
+        if (res.data?.isCreated) {
+          navigateToRoute('Main');
+        } else {
+          navigateToRoute('FillYourProfile', {userId: res?.data?._id});
+        }
+        ShowToast('success', res?.msg);
+        setIsLoading(false);
+      } else {
+        ShowToast('error', res?.msg);
+        setIsLoading(false);
+      }
+    }
+  };
 
   return (
     <ScrollView style={{flex: 1, backgroundColor: AppColors.WHITE}}>
@@ -82,6 +112,8 @@ const Login = () => {
               onFocus={() => setIsFocused(prev => ({...prev, email: true}))}
               onBlur={() => setIsFocused(prev => ({...prev, email: false}))}
               placeholderTextColor={AppColors.BLACK}
+              value={email}
+              onChangeText={text => setEmail(text)}
               logo={
                 <MaterialIcons
                   name={'email'}
@@ -102,6 +134,8 @@ const Login = () => {
               placeholderTextColor={AppColors.BLACK}
               onFocus={() => setIsFocused(prev => ({...prev, password: true}))}
               onBlur={() => setIsFocused(prev => ({...prev, password: false}))}
+              value={password}
+              onChangeText={text => setPassword(text)}
               logo={
                 <MaterialIcons
                   name={'lock'}
@@ -168,10 +202,11 @@ const Login = () => {
           <View style={{alignItems: 'center'}}>
             <AppButton
               title={'Sign in'}
-              handlePress={() => navigateToRoute('FillYourProfile')}
+              handlePress={() => handleSignIn()}
               textSize={1.8}
               btnPadding={18}
               btnWidth={90}
+              loading={isLoading}
             />
             <LineBreak space={2} />
             <TouchableOpacity onPress={() => navigateToRoute('ForgotPassword')}>

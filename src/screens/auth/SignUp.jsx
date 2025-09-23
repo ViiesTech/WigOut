@@ -2,7 +2,6 @@
 import React, {useState} from 'react';
 import {
   View,
-  Text,
   ScrollView,
   Image,
   TouchableOpacity,
@@ -25,6 +24,9 @@ import AppButton from '../../components/AppButton';
 import SVGXml from '../../components/SVGXML';
 import {AppIcons} from '../../assets/icons';
 import {useCustomNavigation} from '../../utils/Hooks';
+import {signUp} from '../../GlobalFunctions/auth';
+import {ShowToast} from '../../utils/api_content';
+import {signUpAndSignInFormValidation} from '../../utils/Validation';
 
 const socialIcons = [
   {
@@ -45,7 +47,30 @@ const SignUp = () => {
   const [isFocused, setIsFocused] = useState({email: false, password: false});
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const {navigateToRoute} = useCustomNavigation();
+
+  const handleSignUp = async () => {
+    const isValid = signUpAndSignInFormValidation(email, password);
+    if (isValid === true) {
+      setIsLoading(true);
+      const res = await signUp({
+        email: email,
+        password: password,
+      });
+
+      if (res.success) {
+        navigateToRoute('Login');
+        ShowToast('success', res?.msg);
+        setIsLoading(false);
+      } else {
+        ShowToast('error', res?.msg);
+        setIsLoading(false);
+      }
+    }
+  };
 
   return (
     <ScrollView style={{flex: 1, backgroundColor: AppColors.WHITE}}>
@@ -83,6 +108,8 @@ const SignUp = () => {
               onFocus={() => setIsFocused(prev => ({...prev, email: true}))}
               onBlur={() => setIsFocused(prev => ({...prev, email: false}))}
               placeholderTextColor={AppColors.BLACK}
+              value={email}
+              onChangeText={text => setEmail(text)}
               logo={
                 <MaterialIcons
                   name={'email'}
@@ -103,6 +130,8 @@ const SignUp = () => {
               placeholderTextColor={AppColors.BLACK}
               onFocus={() => setIsFocused(prev => ({...prev, password: true}))}
               onBlur={() => setIsFocused(prev => ({...prev, password: false}))}
+              value={password}
+              onChangeText={text => setPassword(text)}
               logo={
                 <MaterialIcons
                   name={'lock'}
@@ -169,10 +198,11 @@ const SignUp = () => {
           <View style={{alignItems: 'center'}}>
             <AppButton
               title={'Sign up'}
-              handlePress={() => {}}
+              handlePress={() => handleSignUp()}
               textSize={1.8}
               btnPadding={18}
               btnWidth={90}
+              loading={isLoading}
             />
             <LineBreak space={6} />
             <View style={{flexDirection: 'row', gap: 20, alignItems: 'center'}}>
