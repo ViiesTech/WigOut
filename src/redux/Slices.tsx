@@ -62,6 +62,11 @@ const authSlice = createSlice({
     setUserData: (state, action: PayloadAction<Record<string, any>>) => {
       state.userData = action.payload;
     },
+    UpdateProfile: (state,action) => {
+        if(action.payload) {
+          state.userData = action.payload
+        }
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -82,5 +87,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { clearToken, setUserData, setToken } = authSlice.actions;
+export const { clearToken, setUserData, setToken,UpdateProfile } = authSlice.actions;
 export default authSlice.reducer;

@@ -33,6 +33,10 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import LogoutModal from '../../../components/LogoutModal';
+import {useDispatch, useSelector} from 'react-redux';
+import {clearToken} from '../../../redux/Slices';
+import { baseUrl } from '../../../utils/api_content';
+import { userData } from './../../../utils/LocalData';
 
 const iconSize = responsiveFontSize(2.5);
 const arrowSize = responsiveFontSize(3);
@@ -128,8 +132,11 @@ const secondProfileMenus = [
 ];
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const userData = useSelector((state: RootState) => state.user.userData);
+
   return (
     <ScrollView style={{flex: 1, backgroundColor: AppColors.WHITE}}>
       <AppHeader heading={'Profile'} />
@@ -145,12 +152,12 @@ const Profile = () => {
           <View style={{alignItems: 'center', gap: 15}}>
             <TouchableOpacity>
               <Image
-                source={AppImages.FACE_SCAN}
+                source={{uri: `${baseUrl}/${userData?.profileImage}`}}
                 style={{width: 100, height: 100, borderRadius: 100}}
               />
             </TouchableOpacity>
             <AppText
-              title={'Andrew Ainsley'}
+              title={`${userData?.fullName} ${userData?.nickName}`}
               textColor={AppColors.BLACK}
               textSize={2.7}
               textFontWeight
@@ -163,7 +170,9 @@ const Profile = () => {
 
       <LogoutModal
         visible={showLogoutModal}
-        handleApplyOnPress={() => navigation.navigate('Auth')}
+        handleApplyOnPress={() => {
+          dispatch(clearToken());
+        }}
         handleResetOnPress={() => setShowLogoutModal(false)}
       />
 

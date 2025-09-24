@@ -27,6 +27,8 @@ import {useCustomNavigation} from '../../utils/Hooks';
 import {signIn} from '../../GlobalFunctions/auth';
 import {signUpAndSignInFormValidation} from '../../utils/Validation';
 import {ShowToast} from '../../utils/api_content';
+import {setToken, setUserData} from '../../redux/Slices';
+import {store} from '../../redux/Store';
 
 const socialIcons = [
   {
@@ -63,14 +65,15 @@ const Login = () => {
 
       if (res.success) {
         if (res.data?.isCreated) {
-          navigateToRoute('Main');
+          store.dispatch(setToken(res?.accessToken));
+          store.dispatch(setUserData(res?.data));
         } else {
           navigateToRoute('FillYourProfile', {userId: res?.data?._id});
         }
         ShowToast('success', res?.msg);
         setIsLoading(false);
       } else {
-        ShowToast('error', res?.msg);
+        ShowToast('error', res?.msg || res?.message);
         setIsLoading(false);
       }
     }

@@ -28,6 +28,7 @@ type props = {
   onBlur?: any;
   isFocused?: any;
   readOnly?: any;
+  defaultValue?: any;
 };
 const AppTextInput = ({
   logo,
@@ -49,6 +50,7 @@ const AppTextInput = ({
   borderColor,
   isFocused,
   readOnly,
+  defaultValue,
 }: props) => {
   return (
     <View
@@ -78,6 +80,7 @@ const AppTextInput = ({
         placeholderTextColor={
           placeholderTextColor ? placeholderTextColor : AppColors.GRAY
         }
+        defaultValue={defaultValue}
         style={{
           width: responsiveWidth(inputWidth),
           color: AppColors.BLACK,

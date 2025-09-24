@@ -12,6 +12,7 @@ import SetLocation from '../screens/auth/AccountSetup/SetLocation';
 import CreateNewPin from '../screens/auth/AccountSetup/CreateNewPin';
 import FaceScanning from '../screens/auth/AccountSetup/FaceScanning';
 import Splash from '../screens/auth/Splash';
+import EmailForForgotPassword from '../screens/auth/EmailForForgotPassword';
 
 const Stack = createStackNavigator();
 const Auth = () => {
@@ -24,6 +25,7 @@ const Auth = () => {
       <Stack.Screen name="GetStarted" component={GetStarted} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="EmailForForgotPassword" component={EmailForForgotPassword} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="OtpVerification" component={OtpVerification} />
       <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />

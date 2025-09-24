@@ -1,17 +1,75 @@
+/* eslint-disable no-undef */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, TouchableOpacity, View} from 'react-native';
 import AppHeader from '../../components/AppHeader';
 import AppButton from '../../components/AppButton';
 import AppColors from '../../utils/AppColors';
 import AppText from '../../components/AppTextComps/AppText';
 import {OtpInput} from 'react-native-otp-entry';
 import {responsiveWidth} from '../../utils/Responsive_Dimensions';
-import { useCustomNavigation } from '../../utils/Hooks';
+import {useCustomNavigation} from '../../utils/Hooks';
 import LineBreak from '../../components/LineBreak';
+import {useRoute} from '@react-navigation/native';
+import {
+  forgotPassword,
+  verifyOtpForResetPassword,
+} from '../../GlobalFunctions/auth';
+import {ShowToast} from '../../utils/api_content';
+
+const RESEND_TIME = 60;
 
 const OtpVerification = () => {
   const {navigateToRoute} = useCustomNavigation();
+  const email = useRoute()?.params?.email;
+  const userId = useRoute()?.params?.userId;
+  const [otp, setOtp] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isResending, setIsResending] = useState(false);
+  const [timer, setTimer] = useState(RESEND_TIME);
+
+  const handleVerifyOtp = async () => {
+    if (!otp) {
+      return ShowToast('error', 'OTP is required');
+    }
+
+    setIsLoading(true);
+    const res = await verifyOtpForResetPassword({email, otp});
+    if (res.success) {
+      ShowToast('success', res?.msg);
+      navigateToRoute('CreateNewPassword', {userId});
+    } else {
+      ShowToast('error', res?.msg || res?.message);
+    }
+    setIsLoading(false);
+  };
+
+  const handleResendOtp = async () => {
+    if (!isResending && !timer) {
+      setIsResending(true);
+      setTimer(RESEND_TIME); // restart timer
+      const res = await forgotPassword({email});
+      if (res?.success) {
+        ShowToast('success', res?.msg);
+        setIsResending(false);
+      } else {
+        ShowToast('error', 'Failed to resend OTP');
+        setIsResending(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (timer > 0) {
+      interval = setInterval(() => {
+        setTimer(prev => prev - 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [timer]);
 
   return (
     <View style={{flex: 1, backgroundColor: AppColors.WHITE}}>
@@ -26,7 +84,7 @@ const OtpVerification = () => {
           paddingHorizontal: responsiveWidth(5),
         }}>
         <AppText
-          title={'Code has been send to +1 111 ******99'}
+          title={`Code has been send to ${email}`}
           textColor={AppColors.BLACK}
           textSize={2.1}
         />
@@ -36,7 +94,7 @@ const OtpVerification = () => {
             type="numeric"
             focusColor={AppColors.BTNCOLOURS}
             onFilled={text => console.log(`OTP is ${text}`)}
-            onTextChange={text => console.log(text)}
+            onTextChange={text => setOtp(text)}
             theme={{
               pinCodeContainerStyle: {
                 backgroundColor: AppColors.WHITE,
@@ -48,11 +106,17 @@ const OtpVerification = () => {
             }}
           />
         </View>
-        <AppText
-          title={'Resend code in 53 s'}
-          textColor={AppColors.BLACK}
-          textSize={2.1}
-        />
+        {isResending ? (
+          <ActivityIndicator size={'small'} color={'#000'} />
+        ) : (
+          <TouchableOpacity onPress={() => handleResendOtp()}>
+            <AppText
+              title={`Resend Code ${timer ? `(${timer}s)` : ''}`}
+              textColor={AppColors.BLACK}
+              textSize={2.1}
+            />
+          </TouchableOpacity>
+        )}
       </View>
 
       <View
@@ -64,7 +128,8 @@ const OtpVerification = () => {
           textColor={AppColors.WHITE}
           textSize={2}
           btnPadding={15}
-          handlePress={() => navigateToRoute('CreateNewPassword')}
+          handlePress={() => handleVerifyOtp()}
+          loading={isLoading}
         />
       </View>
       <LineBreak space={2} />

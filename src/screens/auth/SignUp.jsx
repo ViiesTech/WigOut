@@ -66,7 +66,7 @@ const SignUp = () => {
         ShowToast('success', res?.msg);
         setIsLoading(false);
       } else {
-        ShowToast('error', res?.msg);
+        ShowToast('error', res?.msg || res?.message);
         setIsLoading(false);
       }
     }

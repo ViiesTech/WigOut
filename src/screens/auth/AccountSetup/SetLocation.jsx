@@ -38,7 +38,7 @@ const SetLocation = () => {
       ShowToast('success', 'Profile Created Successfully');
       navigateToRoute('Main');
     } else {
-      ShowToast('error', res?.msg);
+      ShowToast('error', res?.msg || res?.message);
     }
 
     setIsLoading(false);

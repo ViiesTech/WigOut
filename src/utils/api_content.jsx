@@ -4,10 +4,11 @@ export const baseUrl = 'https://appsdemo.pro/WIGOut-Backend';
 
 export const endPoints = {
   signUp: '/api/user/signup',
-  verifyOtp: '/api/user/verifyOtp',
+  verifyOtp: '/api/user/verifyOTP',
   resendOtp: '/api/user/resendOtp',
   createProfile: '/api/user/updateUser',
-  resetPassword: '/api/user/setNewPassword',
+  resetPassword: '/api/user/resetPassword',
+  forgotPassword: '/api/user/forgetPassword',
   signIn: '/api/user/login',
 };
 

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable jsx-quotes */
-import React from 'react';
+import React, {useState} from 'react';
 import {FlatList, ScrollView, TouchableOpacity, View} from 'react-native';
 import AppHeader from '../../components/AppHeader';
 import LineBreak from '../../components/LineBreak';
@@ -47,6 +47,7 @@ const data = [
 
 const ForgotPassword = () => {
   const {navigateToRoute} = useCustomNavigation();
+  const [isSelected, setIsSelected] = useState({shown: 'via_sms', id: 1});
 
   return (
     <ScrollView style={{flex: 1, backgroundColor: AppColors.WHITE}}>
@@ -81,17 +82,27 @@ const ForgotPassword = () => {
               <TouchableOpacity
                 style={{
                   borderWidth: 3,
-                  borderColor: AppColors.BTNCOLOURS,
+                  borderColor:
+                    (isSelected.shown == 'via_sms' && isSelected.id == item.id) ||  (isSelected.shown == 'via_email' && isSelected.id == item.id)
+                      ? AppColors.BTNCOLOURS
+                      : AppColors.LIGHTGRAY,
                   paddingHorizontal: responsiveWidth(4),
                   paddingVertical: responsiveHeight(2),
                   borderRadius: 30,
                   flexDirection: 'row',
                   alignItems: 'center',
                   gap: 15,
+                }}
+                onPress={() => {
+                  if (item.id == 1) {
+                    setIsSelected({shown: 'via_sms', id: item.id});
+                  } else {
+                    setIsSelected({shown: 'via_email', id: item.id});
+                  }
                 }}>
                 <View
                   style={{
-                    backgroundColor: AppColors.BTNCOLOURS,
+                    backgroundColor: AppColors.LIGHT_BTNCOLOURS,
                     borderRadius: 100,
                     padding: responsiveWidth(5),
                   }}>
@@ -122,7 +133,7 @@ const ForgotPassword = () => {
           textColor={AppColors.WHITE}
           textSize={2}
           btnPadding={15}
-          handlePress={() => navigateToRoute('OtpVerification')}
+          handlePress={() => navigateToRoute('EmailForForgotPassword')}
         />
       </View>
     </ScrollView>

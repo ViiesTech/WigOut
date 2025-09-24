@@ -27,6 +27,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeStarter from '../../components/HomeStarter';
 import RecommendedCard from '../../components/RecommendedCard';
 import {popularEventData, recommendedData} from '../../utils/LocalData';
+import {useSelector} from 'react-redux';
+import {baseUrl} from '../../utils/api_content';
 
 const slides = [
   {
@@ -152,6 +154,7 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showBranding, setShowBranding] = useState(false);
   const [showRating, setShowRating] = useState(false);
+  const userData = useSelector((state: RootState) => state.user.userData);
 
   // slider two states
   const wendysSliderRef = useRef(null);
@@ -179,7 +182,7 @@ const Home = () => {
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 18}}>
           <TouchableOpacity>
             <Image
-              source={AppImages.FACE_SCAN}
+              source={{uri: `${baseUrl}/${userData?.profileImage}`}}
               style={{width: 50, height: 50, borderRadius: 100}}
             />
           </TouchableOpacity>
@@ -190,7 +193,7 @@ const Home = () => {
               textSize={1.7}
             />
             <AppText
-              title={'Andrew Ainsley'}
+              title={`${userData?.fullName} ${userData?.nickName}`}
               textColor={AppColors.BLACK}
               textSize={2.2}
               textFontWeight

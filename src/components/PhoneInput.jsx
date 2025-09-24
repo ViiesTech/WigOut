@@ -8,7 +8,7 @@ import {
   responsiveWidth,
 } from '../utils/Responsive_Dimensions';
 
-const PhoneInputScreen = ({phoneRef}) => {
+const PhoneInputScreen = ({phoneRef, defaultVal}) => {
   const countryPickerRef = useRef(null);
   const [pickerData, setPickerData] = useState([]);
 
@@ -26,14 +26,13 @@ const PhoneInputScreen = ({phoneRef}) => {
     phoneRef.current?.selectCountry(country.iso2);
   };
 
-  console.log(pickerData)
   return (
     <View>
       <PhoneInput
         ref={phoneRef}
         onPressFlag={onPressFlag}
         initialCountry="uk"
-        initialValue="1114672399"
+        initialValue={defaultVal}
         style={{
           paddingHorizontal: responsiveWidth(7),
           height: responsiveHeight(7),
