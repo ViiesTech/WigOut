@@ -32,6 +32,7 @@ import {useRoute} from '@react-navigation/native';
 const FillYourProfile = () => {
   const {navigateToRoute} = useCustomNavigation();
   const userId = useRoute().params?.userId;
+  const token = useRoute().params?.token;
   const [image, setImage] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [gender, setGender] = useState('male');
@@ -85,6 +86,7 @@ const FillYourProfile = () => {
       nickName,
       gender,
       userId,
+      token,
     };
 
     if (isValid === true) {

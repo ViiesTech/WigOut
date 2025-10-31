@@ -68,7 +68,7 @@ const Login = () => {
           store.dispatch(setToken(res?.accessToken));
           store.dispatch(setUserData(res?.data));
         } else {
-          navigateToRoute('FillYourProfile', {userId: res?.data?._id});
+          navigateToRoute('FillYourProfile', {userId: res?.data?._id, token: res?.accessToken});
         }
         ShowToast('success', res?.msg);
         setIsLoading(false);

@@ -10,6 +10,8 @@ import {useCustomNavigation} from '../../../utils/Hooks';
 import {useRoute} from '@react-navigation/native';
 import {createProfile} from '../../../GlobalFunctions/auth';
 import {ShowToast} from '../../../utils/api_content';
+import { store } from '../../../redux/Store';
+import { setToken, setUserData } from '../../../redux/Slices';
 
 const SetLocation = () => {
   const {navigateToRoute} = useCustomNavigation();
@@ -34,9 +36,12 @@ const SetLocation = () => {
       date: data?.date,
     });
 
+    console.log(res)
+
     if (res?.success) {
       ShowToast('success', 'Profile Created Successfully');
-      navigateToRoute('Main');
+      store.dispatch(setToken(data?.token));
+      store.dispatch(setUserData(res?.data));
     } else {
       ShowToast('error', res?.msg || res?.message);
     }

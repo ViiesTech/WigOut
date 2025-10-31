@@ -2,7 +2,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   ScrollView,
@@ -137,6 +137,11 @@ const Profile = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userData = useSelector((state: RootState) => state.user.userData);
 
+  useEffect(() => {
+    dispatch(clearToken());
+  }, [])
+  
+
   return (
     <ScrollView style={{flex: 1, backgroundColor: AppColors.WHITE}}>
       <AppHeader heading={'Profile'} />
@@ -195,7 +200,7 @@ const Profile = () => {
                     setShowLogoutModal(true);
                   }
                 }}>
-                <View style={{flexDirection: 'row', gap: 15}}>
+                <View style={{flexDirection: 'row', gap: 15, height: 200}}>
                   {item.icon}
                   <AppText
                     title={item.title}
